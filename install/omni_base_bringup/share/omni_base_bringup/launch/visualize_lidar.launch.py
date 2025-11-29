@@ -1,1 +1,0 @@
-/home/container_user/omni_ws/src/omni_base_bringup/launch/visualize_lidar.launch.py

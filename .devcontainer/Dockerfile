@@ -1,9 +1,21 @@
 FROM ghcr.io/soham2560/humble-harmonic:latest
 
-# Switch to root to install packages
+# 🔥 FIX ENTRYPOINT PERMISSIONS
+USER root
+RUN chmod +x /ros_entrypoint.sh
+
+# Define ARGs BEFORE using them
+# ==========
+ARG USERNAME=container_user
+ARG USER_UID=1000
+ARG USER_GID=${USER_UID}
+
+# Use root for installation
 USER root
 
-# Install sudo and other dependencies
+# ==========
+# Install ROS dependencies (Lidar, SLAM Toolbox, Cartographer, RViz)
+# ==========
 RUN apt-get update && apt-get install -y \
     sudo \
     ros-humble-rplidar-ros \
@@ -11,20 +23,35 @@ RUN apt-get update && apt-get install -y \
     ros-humble-robot-state-publisher \
     ros-humble-joint-state-publisher \
     ros-humble-xacro \
+    ros-humble-slam-toolbox \
+    ros-humble-cartographer \
+    ros-humble-cartographer-ros \
+    ros-humble-cartographer-ros-msgs \
     && rm -rf /var/lib/apt/lists/*
 
-# The base image already has container_user with UID/GID 1000
-# We'll use that user and just ensure it has sudo access
-ARG USERNAME=container_user
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
+# ==========
+# Sudo access for non-root user
+# ==========
+RUN echo "${USERNAME} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${USERNAME} \
+    && chmod 0440 /etc/sudoers.d/${USERNAME}
 
-# Ensure the user has passwordless sudo access
-RUN echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME
+# ==========
+# Add user to dialout group for /dev/ttyUSB0 access
+# ==========
+RUN groupadd -f dialout || true \
+    && usermod -a -G dialout ${USERNAME}
 
-# Source ROS setup in .bashrc
-RUN echo "source /opt/ros/humble/setup.bash" >> /home/$USERNAME/.bashrc
+# ==========
+# Ensure default shell is bash so .bashrc loads
+# ==========
+RUN chsh -s /bin/bash ${USERNAME} || true
 
+# ==========
+# Add ROS sourcing to .bashrc
+# ==========
+RUN echo "source /opt/ros/humble/setup.bash" >> /home/${USERNAME}/.bashrc
+
+# ==========
 # Switch to non-root user
-USER $USERNAME
+# ==========
+USER ${USERNAME}

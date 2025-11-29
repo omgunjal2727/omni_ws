@@ -1,9 +1,0 @@
-/home/container_user/omni_ws/build/omni_base_control/CMakeFiles/uninstall.dir
-/home/container_user/omni_ws/build/omni_base_control/CMakeFiles/omni_base_control_uninstall.dir
-/home/container_user/omni_ws/build/omni_base_control/CMakeFiles/test.dir
-/home/container_user/omni_ws/build/omni_base_control/CMakeFiles/edit_cache.dir
-/home/container_user/omni_ws/build/omni_base_control/CMakeFiles/rebuild_cache.dir
-/home/container_user/omni_ws/build/omni_base_control/CMakeFiles/list_install_components.dir
-/home/container_user/omni_ws/build/omni_base_control/CMakeFiles/install.dir
-/home/container_user/omni_ws/build/omni_base_control/CMakeFiles/install/local.dir
-/home/container_user/omni_ws/build/omni_base_control/CMakeFiles/install/strip.dir

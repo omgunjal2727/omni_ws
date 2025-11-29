@@ -1,1 +1,0 @@
-/home/container_user/omni_ws/src/omni_base_bringup/launch/nav2.launch.py

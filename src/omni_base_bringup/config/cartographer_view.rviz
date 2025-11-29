@@ -1,0 +1,6 @@
+Fixed Frame: map
+Displays:
+  - LaserScan (/scan)
+  - Map (/map)
+  - TF
+  - Pose
