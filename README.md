@@ -38,7 +38,16 @@ If you need a second terminal:
 docker exec -it omni-base-ros2 /bin/bash
 ```
 
-### 3. Launch Robot Description
+### 3. Build the Workspace
+
+Inside the container, you must build the workspace since we are mounting the source code:
+
+```bash
+colcon build --symlink-install
+source install/setup.bash
+```
+
+### 4. Launch Robot Description
 
 Inside the container:
 
@@ -46,7 +55,7 @@ Inside the container:
 ros2 launch omni_base_description description.launch.py
 ```
 
-### 4. Launch Lidar
+### 5. Launch Lidar
 
 Inside the container:
 
@@ -54,7 +63,7 @@ Inside the container:
 ros2 launch omni_base_bringup rplidar.launch.py
 ```
 
-### 5. Launch Cartographer SLAM
+### 6. Launch Cartographer SLAM
 
 Inside the container:
 
@@ -62,21 +71,13 @@ Inside the container:
 ros2 launch omni_base_bringup cartographer.launch.py
 ```
 
-### 6. Launch RViz2
+### 7. Launch RViz2
 
 Inside the container:
 
 ```bash
 rviz2 -d ~/omni_ws/src/omni_base_bringup/config/cartographer_view.rviz
 ```
-
-## Alternative: Using Scripts
-
-You can also use the provided scripts which wrap similar commands:
-
-- `./build_container.sh`: Builds the image.
-- `./run_container.sh`: Runs the container (check script for image name adjustments).
-- `./setup_and_visualize.sh`: Sets up the workspace and launches visualization.
 
 ### SLAM (Simultaneous Localization and Mapping)
 
