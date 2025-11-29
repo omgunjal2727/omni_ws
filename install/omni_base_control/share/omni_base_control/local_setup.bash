@@ -1,0 +1,1 @@
+/home/container_user/omni_ws/build/omni_base_control/ament_cmake_environment_hooks/local_setup.bash

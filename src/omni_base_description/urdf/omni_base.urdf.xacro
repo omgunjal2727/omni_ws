@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="omni_base">
+  
+  <!-- Constants -->
+  <xacro:property name="PI" value="3.1415926535897931"/>
+  <xacro:property name="base_radius" value="0.2"/>
+  <xacro:property name="base_height" value="0.1"/>
+  <xacro:property name="wheel_radius" value="0.05"/>
+  <xacro:property name="wheel_width" value="0.03"/>
+  <xacro:property name="wheel_offset_z" value="-0.05"/>
+  
+  <!-- Base Link (reference frame) -->
+  <link name="base_link"/>
+  
+  <!-- Base Footprint -->
+  <link name="base_footprint"/>
+  
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 ${wheel_radius - wheel_offset_z}" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- Chassis -->
+  <link name="chassis">
+    <visual>
+      <geometry>
+        <cylinder radius="${base_radius}" length="${base_height}"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.2 0.2 0.8 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${base_radius}" length="${base_height}"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5.0"/>
+      <inertia ixx="0.0541" ixy="0.0" ixz="0.0" 
+               iyy="0.0541" iyz="0.0" 
+               izz="0.1"/>
+    </inertial>
+  </link>
+  
+  <joint name="chassis_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="chassis"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- Omni Wheel Macro -->
+  <xacro:macro name="omni_wheel" params="prefix angle">
+    <link name="${prefix}_wheel">
+      <visual>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+        <material name="black">
+          <color rgba="0.1 0.1 0.1 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.5"/>
+        <inertia ixx="0.000625" ixy="0.0" ixz="0.0" 
+                 iyy="0.001125" iyz="0.0" 
+                 izz="0.000625"/>
+      </inertial>
+    </link>
+    
+    <joint name="${prefix}_wheel_joint" type="continuous">
+      <parent link="base_link"/>
+      <child link="${prefix}_wheel"/>
+      <origin xyz="${base_radius * 0.7 * cos(angle)} ${base_radius * 0.7 * sin(angle)} ${wheel_offset_z}" 
+              rpy="0 0 ${angle}"/>
+      <axis xyz="0 1 0"/>
+    </joint>
+  </xacro:macro>
+  
+  <!-- Three Omni Wheels at 120 degree intervals -->
+  <xacro:omni_wheel prefix="front" angle="0"/>
+  <xacro:omni_wheel prefix="left" angle="${2*PI/3}"/>
+  <xacro:omni_wheel prefix="right" angle="${-2*PI/3}"/>
+  
+  <!-- RP LiDAR A2M8 -->
+  <link name="laser">
+    <visual>
+      <geometry>
+        <cylinder radius="0.038" length="0.04"/>
+      </geometry>
+      <material name="red">
+        <color rgba="0.8 0.1 0.1 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="0.038" length="0.04"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.17"/>
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" 
+               iyy="0.0001" iyz="0.0" 
+               izz="0.0001"/>
+    </inertial>
+  </link>
+  
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser"/>
+    <origin xyz="0 0 ${base_height/2 + 0.02}" rpy="0 0 0"/>
+  </joint>
+  
+</robot>

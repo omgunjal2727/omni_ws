@@ -1,0 +1,94 @@
+{
+  "Global Options": {
+    "Background Color": "48; 48; 48",
+    "Fixed Frame": "base_link",
+    "Frame Rate": 30
+  },
+  "Displays": [
+    {
+      "Class": "rviz_default_plugins/Grid",
+      "Name": "Grid",
+      "Enabled": true,
+      "Cell Size": 1.0,
+      "Color": "160; 160; 164",
+      "Line Style": "Lines",
+      "Normal Cell Count": 0,
+      "Offset": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      },
+      "Plane": "XY",
+      "Plane Cell Count": 10,
+      "Reference Frame": "<Fixed Frame>"
+    },
+    {
+      "Class": "rviz_default_plugins/TF",
+      "Name": "TF",
+      "Enabled": true,
+      "Frame Timeout": 15.0,
+      "Frames": {
+        "All Enabled": true
+      },
+      "Marker Scale": 0.3,
+      "Show Arrows": true,
+      "Show Axes": true,
+      "Show Names": true,
+      "Update Interval": 0.0
+    },
+    {
+      "Class": "rviz_default_plugins/RobotModel",
+      "Name": "RobotModel",
+      "Enabled": true,
+      "Description Topic": "/robot_description",
+      "Visual Enabled": true,
+      "Collision Enabled": false,
+      "Alpha": 1.0
+    },
+    {
+      "Class": "rviz_default_plugins/LaserScan",
+      "Name": "LaserScan",
+      "Enabled": true,
+      "Topic": "/scan",
+      "QoS Profile": {
+        "Depth": 5,
+        "Durability Policy": "Volatile",
+        "History Policy": "Keep Last",
+        "Reliability Policy": "Best Effort"
+      },
+      "Size (m)": 0.05,
+      "Size (Pixels)": 3,
+      "Color": "255; 0; 0",
+      "Alpha": 1.0,
+      "Decay Time": 0.0,
+      "Style": "Points",
+      "Use Fixed Frame": true,
+      "Use rainbow": true,
+      "Min Color": "0; 0; 0",
+      "Max Color": "255; 255; 255",
+      "Min Intensity": 0,
+      "Max Intensity": 4096,
+      "Autocompute Intensity Bounds": true
+    }
+  ],
+  "Views": {
+    "Current": {
+      "Class": "rviz_default_plugins/Orbit",
+      "Distance": 2.5,
+      "Enable Stereo Rendering": false,
+      "Focal Point": {
+        "X": 0,
+        "Y": 0,
+        "Z": 0
+      },
+      "Focal Shape Fixed Size": true,
+      "Focal Shape Size": 0.05,
+      "Invert Z Axis": false,
+      "Name": "Current View",
+      "Near Clip Distance": 0.01,
+      "Pitch": 0.5,
+      "Target Frame": "base_link",
+      "Yaw": 0.785
+    }
+  }
+}

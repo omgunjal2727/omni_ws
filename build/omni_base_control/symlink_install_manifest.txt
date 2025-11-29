@@ -1,0 +1,16 @@
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/launch/control.launch.py
+/home/container_user/omni_ws/install/omni_base_control/share/ament_index/resource_index/package_run_dependencies/omni_base_control
+/home/container_user/omni_ws/install/omni_base_control/share/ament_index/resource_index/parent_prefix_path/omni_base_control
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/environment/ament_prefix_path.sh
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/environment/ament_prefix_path.dsv
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/environment/path.sh
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/environment/path.dsv
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/local_setup.bash
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/local_setup.sh
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/local_setup.zsh
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/local_setup.dsv
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/package.dsv
+/home/container_user/omni_ws/install/omni_base_control/share/ament_index/resource_index/packages/omni_base_control
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/cmake/omni_base_controlConfig.cmake
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/cmake/omni_base_controlConfig-version.cmake
+/home/container_user/omni_ws/install/omni_base_control/share/omni_base_control/package.xml

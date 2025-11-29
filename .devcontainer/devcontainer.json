@@ -1,0 +1,31 @@
+{
+    "name": "ROS 2 Humble Omni Base",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": ".."
+    },
+    "privileged": true,
+    "remoteUser": "container_user",
+    "containerEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}"
+    },
+    "runArgs": [
+        "--net=host",
+        "--ipc=host",
+        "--pid=host",
+        "-e",
+        "DISPLAY=${env:DISPLAY}",
+        "-v",
+        "/tmp/.X11-unix:/tmp/.X11-unix"
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-iot.vscode-ros",
+                "ms-python.python",
+                "ms-vscode.cpptools"
+            ]
+        }
+    },
+    "postCreateCommand": "sudo rosdep init || true && rosdep update && rosdep install --from-paths src --ignore-src -y"
+}
