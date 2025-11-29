@@ -26,6 +26,7 @@ docker run -it --rm \
   -v /home/omg/omni_ws:/home/container_user/omni_ws \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -e DISPLAY=$DISPLAY \
+  -w /home/container_user/omni_ws \
   omni_slam:cartographer \
   /bin/bash
 ```
@@ -40,9 +41,11 @@ docker exec -it omni-base-ros2 /bin/bash
 
 ### 3. Build the Workspace
 
-Inside the container, you must build the workspace since we are mounting the source code:
+Inside the container, you must build the workspace since we are mounting the source code.
+**First, navigate to the workspace directory:**
 
 ```bash
+cd ~/omni_ws
 colcon build --symlink-install
 source install/setup.bash
 ```
